@@ -29,7 +29,6 @@ function Home() {
             return fetch(`/posts/${filename + md}`)
               .then((response) => response.text())
               .then((markdown) => {
-                console.log(markdown);
                 const { data, content } = grayMatter(markdown);
                 const readTime = calculateReadTime(content);
                 return { ...data, content, readTime };
@@ -46,6 +45,7 @@ function Home() {
         setIsLoading(false);
       });
   }, []);
+  
 
   function calculateReadTime(text) {
     const wordsPerMinute = 200;
