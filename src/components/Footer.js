@@ -4,7 +4,7 @@ const packageJson = require('../../package.json');
 
 function Footer() {
   return (
-    <Box component="footer" sx={{ bgcolor: 'background.paper', py: 6 }}>
+    <Box component="footer" sx={{ bgcolor: 'inherit', py: 6 }}>
       <Container maxWidth="lg">
         <Typography variant="body1" align="center" color="text.secondary">
           © 2023 Parsa Kargari with 💙 @ 4:39 AM
