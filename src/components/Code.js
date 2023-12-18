@@ -15,6 +15,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 export default function Code({ children, className }) {
   const theme = useTheme();
+  //eslint-disable-next-line
   const [copied, setCopied] = useState(false);
   const [SnackbarOpen, setSnackbarOpen] = useState(false);
   if (!className) {

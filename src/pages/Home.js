@@ -8,7 +8,7 @@ import { Buffer } from "buffer";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 window.Buffer = Buffer;
-// 
+//
 function Home() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,8 +44,8 @@ function Home() {
         console.error("Error fetching posts:", error);
         setIsLoading(false);
       });
+    //eslint-disable-next-line
   }, []);
-  
 
   function calculateReadTime(text) {
     const wordsPerMinute = 200;
