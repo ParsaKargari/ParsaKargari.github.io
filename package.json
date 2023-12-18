@@ -26,10 +26,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp .nojekyll build/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build && echo > build/.nojekyll",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
