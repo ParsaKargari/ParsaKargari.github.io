@@ -18,7 +18,7 @@ jobs:
           node-version: '20.10.0'  # Updated Node.js version
 
       - name: Install Dependencies
-        run: npm install --force  # or 'yarn install' if you use Yarn
+        run: npm ci  # or 'yarn install' if you use Yarn
 
       - name: Build
         run: npm run build  # or 'yarn build' for Yarn
