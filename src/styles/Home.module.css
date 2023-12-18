@@ -1,0 +1,45 @@
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
+.post {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.postTitle {
+  margin: 0;
+  font-size: 1.5rem; /* Adjust size as needed */
+}
+
+.postTitle a {
+  text-decoration: none; /* No underline */
+}
+
+.postTitle a:hover {
+    /* Grow text size */
+    font-size: 1.53rem; /* Adjust size as needed */
+}
+
+.postMeta {
+  color: #666; /* Adjust color as needed */
+  font-size: 0.875rem; /* Adjust size as needed */
+}
+
+.postDescription {
+  margin: 1rem 0;
+}
+
+.postTags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.postTag {
+  border-radius: 3px;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem; /* Adjust size as needed */
+}

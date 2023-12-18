@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Home from "./pages/Home";
+import Post from "./pages/Post";
 import Header from "./components/Header";
+import Container from "@mui/material/Container";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -31,6 +33,9 @@ function App() {
                   primary: "#a9a9b3", 
                   secondary: "#aaaaaa", 
                 },
+                tags: {
+                  background: "#222222", 
+                },
               }
             : {
                 // Light mode palette
@@ -43,6 +48,9 @@ function App() {
                 text: {
                   primary: "#222222", 
                   secondary: "#555555", 
+                },
+                tags: {
+                  background: "#eee", 
                 },
               }),
         },
@@ -59,11 +67,13 @@ function App() {
       <CssBaseline />
       <Router>
         <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+        <Container maxWidth="md" sx={{paddingTop: "175px"}}>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          {/* <Route path="/post/:slug" element={<Post />} />
-          <Route path="/about" element={<About />} /> */}
+          <Route path="/post/:slug" element={<Post />} />
+          {/* <Route path="/about" element={<About />} /> */}
         </Routes>
+        </Container>
         {/* <Footer /> */}
       </Router>
     </ThemeProvider>
