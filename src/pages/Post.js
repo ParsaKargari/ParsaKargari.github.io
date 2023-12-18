@@ -1,28 +1,37 @@
-// Post.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 import styles from '../styles/Post.module.css';
-import { marked } from 'marked';
-
+import Markdown from 'markdown-to-jsx';
+import Code from '../components/Code';
 
 function Post() {
   const [postContent, setPostContent] = useState('');
-  const { slug } = useParams(); // Get the slug from the URL
+  const { slug } = useParams();
 
   useEffect(() => {
-    // Assuming your posts are in the 'public/posts' directory
     fetch(`/posts/${slug}.md`)
-      .then(response => response.text())
-      .then(text => {
-        setPostContent(marked(text)); // Convert Markdown to HTML
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
       })
-      .catch(err => console.error("Failed to load post content", err));
+      .then(markdown => {
+        setPostContent(DOMPurify.sanitize(markdown));
+      })
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+      });
   }, [slug]);
 
   return (
     <article className={styles.postContent}>
-      {/* Display the post content as HTML */}
-      <div dangerouslySetInnerHTML={{ __html: postContent }} />
+      <Markdown options={{
+        overrides: {
+          code: Code
+        }
+      }}>{postContent}</Markdown>
     </article>
   );
 }

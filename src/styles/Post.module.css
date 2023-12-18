@@ -1,0 +1,23 @@
+.code {
+    position: relative;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.code .copyicon {
+    position: absolute;
+    top: 1.2rem;
+    right: 0.5rem;
+    z-index: 5;
+    color: #A9A9B3;
+}
+
+.code .copyicon:hover {
+    color: #F5F5F5;
+}
+
+.syntaxHighlighter {
+    border-radius: 0.5rem;
+}
+

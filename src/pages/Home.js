@@ -13,7 +13,7 @@ function Home() {
       readTime: "10 min read",
       description:
         "The web has come a long way since the early 2000s. Let's take a look at how web development has evolved over the years.",
-      tags: ["webdev", "history"],
+      tags: ["#webdev", "#history"],
     },
   ];
 
