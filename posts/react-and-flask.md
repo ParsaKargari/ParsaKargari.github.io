@@ -11,7 +11,7 @@ description: "A beginner-friendly guide to building a full-stack application usi
 
 ## Introduction
 
-This ttutorial offers a step-by-step guide to building a full-stack application using React for the frontend and Flask for the backend. Aimed at beginners, it covers everything from environment setup to making API requests and handling cross-origin resource sharing (CORS).
+This tutorial offers a step-by-step guide to building a full-stack application using React for the frontend and Flask for the backend. Aimed at beginners, it covers everything from environment setup to making API requests and handling cross-origin resource sharing (CORS).
 
 ## Prerequisites
 
