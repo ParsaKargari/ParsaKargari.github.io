@@ -1,6 +1,6 @@
 ---
-title: "Building a Full Stack Application with React and Flask"
-slug: "building-a-full-stack-application-with-react-and-flask"
+title: "React and Flask"
+slug: "react-and-flask"
 date: "2023-12-18"
 tags: ["React", "Flask", "Full Stack", "API"]
 author: "Parsa Kargari"

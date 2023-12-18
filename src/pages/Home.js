@@ -18,7 +18,7 @@ function Home() {
     window.location.origin === "http://localhost:3000"
       ? "http://localhost:3000"
       : "https://parsakargari.github.io";
-  const md = window.location.origin === "http://localhost:3000" ? ".md" : "";
+  const md = window.location.origin === "http://localhost:3000" ? ".md" : ".md";
 
   useEffect(() => {
     fetch(`${baseUrl}/posts/index.json`)
