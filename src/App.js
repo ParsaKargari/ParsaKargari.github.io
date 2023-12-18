@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Home from "./pages/Home";
 import Post from "./pages/Post";
+import About from "./pages/About";
 import Header from "./components/Header";
 import Container from "@mui/material/Container";
 
@@ -71,7 +72,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/post/:slug" element={<Post />} />
-          {/* <Route path="/about" element={<About />} /> */}
+          <Route path="/about" element={<About />} />
         </Routes>
         </Container>
         {/* <Footer /> */}

@@ -9,6 +9,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import InfoIcon from "@mui/icons-material/Info";
 import Divider from "@mui/material/Divider";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@mui/material";
@@ -49,6 +50,15 @@ function Header({ toggleDarkMode, darkMode }) {
               color: theme.palette.text.primary,
             }}
           >
+            <IconButton
+              color="inherit"
+              component={RouterLink}
+              to="/about"
+              sx={{ mr: 1 }}
+            >
+              <InfoIcon />
+            </IconButton>
+
             <IconButton
               color="inherit"
               component="a"
