@@ -35,6 +35,11 @@ function Post() {
       });
   }, [slug]);
 
+  const markdownLinkStyle = {
+    color: theme.palette.primary.main,
+    textDecoration: "none",
+  };
+
   return (
     <article>
       <header
@@ -56,7 +61,20 @@ function Post() {
       </header>
       <Markdown
         className={styles.postContent}
-        options={{ overrides: { code: Code } }}
+        options={{
+          overrides: {
+            code: Code,
+            a: {
+              component: ({ children, ...props }) => {
+                return (
+                  <a {...props} style={markdownLinkStyle}>
+                    {children}
+                  </a>
+                );
+              },
+            },
+          },
+        }}
       >
         {post.content}
       </Markdown>

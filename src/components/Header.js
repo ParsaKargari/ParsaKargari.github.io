@@ -54,7 +54,6 @@ function Header({ toggleDarkMode, darkMode }) {
               color="inherit"
               component={RouterLink}
               to="/about"
-              sx={{ mr: 1 }}
             >
               <InfoIcon />
             </IconButton>

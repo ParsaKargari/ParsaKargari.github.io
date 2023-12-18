@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import Markdown from 'markdown-to-jsx';
-import DOMPurify from 'dompurify';
+import React, { useState, useEffect } from "react";
+import Markdown from "markdown-to-jsx";
+import DOMPurify from "dompurify";
+import { useTheme } from "@mui/material/styles";
 
 function About() {
-  const [aboutContent, setAboutContent] = useState('');
+  const [aboutContent, setAboutContent] = useState("");
+  const theme = useTheme();
 
   useEffect(() => {
-    fetch('/posts/about-me.md')
+    fetch("/posts/about-me.md")
       .then((response) => response.text())
       .then((markdown) => {
         setAboutContent(DOMPurify.sanitize(markdown));
@@ -16,9 +18,30 @@ function About() {
       });
   }, []);
 
+  const markdownLinkStyle = {
+    color: theme.palette.primary.main, // or any color you want
+    textDecoration: "none", // if you want to remove the underline
+  };
+
   return (
     <div>
-      <Markdown>{aboutContent}</Markdown>
+      <Markdown
+        options={{
+          overrides: {
+            a: {
+              component: ({ children, ...props }) => {
+                return (
+                  <a {...props} style={markdownLinkStyle}>
+                    {children}
+                  </a>
+                );
+              },
+            },
+          },
+        }}
+      >
+        {aboutContent}
+      </Markdown>
     </div>
   );
 }

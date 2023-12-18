@@ -42,6 +42,6 @@ Thank you for being a part of my journey. I hope you find something useful here,
 
 -- Parsa
 
-My personal website: https://parsakargari.live/
+My personal website: [parsakargari.live](https://parsakargari.live/)
 
 parsakargari3@gmail.com

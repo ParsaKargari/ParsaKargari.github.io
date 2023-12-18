@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Post from "./pages/Post";
 import About from "./pages/About";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Container from "@mui/material/Container";
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
                   secondary: "#aaaaaa", 
                 },
                 tags: {
-                  background: "#222222", 
+                  background: "#3B3D42", 
                 },
               }
             : {
@@ -75,7 +76,7 @@ function App() {
           <Route path="/about" element={<About />} />
         </Routes>
         </Container>
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </ThemeProvider>
   );

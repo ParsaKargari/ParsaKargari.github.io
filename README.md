@@ -31,6 +31,7 @@ This blog is built using the following technologies:
 - **markdown-to-jsx**: To convert Markdown into React components.
 - **React Router**: For client-side routing.
 - **DOMPurify**: To sanitize the HTML content.
+- **react-syntax-highlighter**: To highlight code blocks.
 
 ## Contribution
 
