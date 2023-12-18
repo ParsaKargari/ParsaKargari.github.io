@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,32 +14,41 @@ import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@mui/material";
 
 function Header({ toggleDarkMode, darkMode }) {
+  const theme = useTheme();
+
   return (
-    <AppBar
-      position="static"
-      color="default"
-    >
-      <Container maxWidth="lg">
+    <AppBar color="default">
+      <Container maxWidth="md">
         <Toolbar
           disableGutters
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            color: "inherit",
           }}
         >
           <Typography variant="h6" noWrap>
             <Link
               component={RouterLink}
               to="/"
-              color="inherit"
               underline="none"
-              sx={{ fontWeight: "bold" }}
+              sx={{
+                fontWeight: "bold",
+                fontFamily: "monospace",
+                color: theme.palette.text.primary,
+              }}
             >
               ../parsakargari
             </Link>
           </Typography>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              color: theme.palette.text.primary,
+            }}
+          >
             <IconButton
               color="inherit"
               component="a"
@@ -57,7 +67,11 @@ function Header({ toggleDarkMode, darkMode }) {
             >
               <LinkedInIcon />
             </IconButton>
-            <Divider orientation="vertical" flexItem sx={{ mx: 1, borderWidth: 1 }} />
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{ mx: 1, borderWidth: 1 }}
+            />
             <IconButton color="inherit" onClick={toggleDarkMode}>
               {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
             </IconButton>
