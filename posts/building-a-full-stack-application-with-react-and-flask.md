@@ -1,7 +1,7 @@
 ---
 title: "Building a Full Stack Application with React and Flask"
 slug: "building-a-full-stack-application-with-react-and-flask"
-date: "12-18-2023"
+date: "2023-12-18"
 tags: ["React", "Flask", "Full Stack", "API"]
 author: "Parsa Kargari"
 description: "A beginner-friendly guide to building a full-stack application using React for the frontend and Flask for the backend. This guide covers everything from setting up the environments to making API requests."
@@ -25,8 +25,6 @@ This tutorial offers a step-by-step guide to building a full-stack application u
 - [Backend Setup (Flask)](#backend-setup-flask)
 - [Frontend Setup (React)](#frontend-setup-react)
 - [Final Sample Application](#final-sample-application)
-
-
 
 ## Project Structure
 
@@ -226,26 +224,28 @@ Create a simple form in React to add a student name and display the list of stud
 
 ```javascript
 // frontend/src/App.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
   const [students, setStudents] = useState([]);
-  const [newStudentName, setNewStudentName] = useState('');
+  const [newStudentName, setNewStudentName] = useState("");
 
   useEffect(() => {
     // Fetch students when the component is mounted
-    axios.get('http://localhost:5000/api/students')
+    axios
+      .get("http://localhost:5000/api/students")
       .then((response) => setStudents(response.data))
       .catch((err) => console.error(err));
   }, []);
 
   const handleAddStudent = () => {
-    axios.post('http://localhost:5000/api/students', { name: newStudentName })
+    axios
+      .post("http://localhost:5000/api/students", { name: newStudentName })
       .then((response) => {
         if (response.data.success) {
           setStudents(response.data.students);
-          setNewStudentName('');
+          setNewStudentName("");
         }
       })
       .catch((err) => console.error(err));
@@ -261,7 +261,9 @@ function App() {
       />
       <button onClick={handleAddStudent}>Add Student</button>
       <ul>
-        {students.map((student, index) => <li key={index}>{student}</li>)}
+        {students.map((student, index) => (
+          <li key={index}>{student}</li>
+        ))}
       </ul>
     </div>
   );
@@ -283,7 +285,6 @@ python app.py
 cd frontend
 npm start
 ```
-
 
 ## Conclusion
 
