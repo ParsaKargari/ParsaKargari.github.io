@@ -5,11 +5,14 @@ import { useTheme } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import grayMatter from "gray-matter";
 import { Buffer } from "buffer";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
 window.Buffer = Buffer;
 
 function Home() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
   const theme = useTheme();
 
   useEffect(() => {
@@ -45,16 +48,33 @@ function Home() {
     return Math.ceil(minutes);
   }
 
+  function handleSearchChange(event) {
+    setSearchTerm(event.target.value.toLowerCase());
+  }
+
+  const filteredPosts = posts.filter(
+    (post) =>
+      post.title.toLowerCase().includes(searchTerm) ||
+      post.description.toLowerCase().includes(searchTerm)
+  );
+
   // Render a message if no posts are available
   if (!isLoading && posts.length === 0) {
     return <div className={styles.noPosts}>No posts found.</div>;
   }
 
-
-
   return (
     <div className={styles.home}>
-      {posts.map((post, index) => (
+      {/* Search Bar */}
+      <Box sx={{ display: "flex", justifyContent: "center", marginBottom: "50px" }}>
+        <TextField
+          label="Search Posts"
+          variant="outlined"
+          onChange={handleSearchChange}
+          style={{ marginBottom: "20px", width: "100%", maxWidth: "500px" }}
+        />
+      </Box>
+      {filteredPosts.map((post, index) => (
         <article key={index} className={styles.post}>
           {/* Post Title */}
           <h2 className={styles.postTitle}>
