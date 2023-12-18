@@ -1,12 +1,3 @@
----
-title: "React and Flask"
-slug: "react-and-flask"
-date: "2023-12-18"
-tags: ["React", "Flask", "Full Stack", "API"]
-author: "Parsa Kargari"
-description: "A beginner-friendly guide to building a full-stack application using React for the frontend and Flask for the backend. This guide covers everything from setting up the environments to making API requests."
----
-
 # Building a Full Stack Application with React and Flask
 
 ## Introduction
