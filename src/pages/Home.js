@@ -1,26 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Home.module.css";
 import { useTheme } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
+import grayMatter from "gray-matter";
+import { Buffer } from "buffer";
+window.Buffer = Buffer;
 
 function Home() {
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const theme = useTheme();
-  const posts = [
-    {
-      title: "The Evolution of Web Development",
-      date: "2023-12-17",
-      readTime: "10 min read",
-      description:
-        "The web has come a long way since the early 2000s. Let's take a look at how web development has evolved over the years.",
-      tags: ["#webdev", "#history"],
-    },
-  ];
 
-  // Create Slug Automatically from Title
-  const slugify = (title) => {
-    return title.toLowerCase().replace(/\s+/g, "-").slice(0, 200);
-  };
+  useEffect(() => {
+    fetch("/posts/index.json")
+      .then((response) => response.json())
+      .then((filenames) => {
+        return Promise.all(
+          filenames.map((filename) => {
+            return fetch(`/posts/${filename}`)
+              .then((response) => response.text())
+              .then((markdown) => {
+                const { data, content } = grayMatter(markdown);
+                const readTime = calculateReadTime(content);
+                return { ...data, content, readTime };
+              });
+          })
+        );
+      })
+      .then((postsData) => {
+        setPosts(postsData);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching posts:", error);
+        setIsLoading(false);
+      });
+  }, []);
+
+  function calculateReadTime(text) {
+    const wordsPerMinute = 200;
+    const words = text.split(/\s+/).length;
+    const minutes = words / wordsPerMinute;
+    return Math.ceil(minutes);
+  }
+
+  // Render a message if no posts are available
+  if (!isLoading && posts.length === 0) {
+    return <div className={styles.noPosts}>No posts found.</div>;
+  }
+
+
 
   return (
     <div className={styles.home}>
@@ -30,7 +60,7 @@ function Home() {
           <h2 className={styles.postTitle}>
             <Link
               style={{ color: theme.palette.text.primary }}
-              to={`/post/${slugify(post.title)}`}
+              to={`/post/${post.slug}`}
             >
               {post.title}
             </Link>
@@ -41,7 +71,7 @@ function Home() {
             className={styles.postMeta}
             style={{ color: theme.palette.text.primary }}
           >
-            {post.date} — {post.readTime}
+            {post.date} — {post.readTime} min read, by {post.author}
           </p>
 
           {/* Post Description */}
@@ -55,7 +85,7 @@ function Home() {
                 className={styles.postTag}
                 style={{ backgroundColor: theme.palette.tags.background }}
               >
-                {tag}
+                #{tag}
               </span>
             ))}
           </div>
