@@ -6,9 +6,12 @@ import { useTheme } from "@mui/material/styles";
 function About() {
   const [aboutContent, setAboutContent] = useState("");
   const theme = useTheme();
+  const baseUrl = window.location.origin === 'http://localhost:3000' ? 'http://localhost:3000' : 'https://parsakargari.github.io'; 
+  const md = window.location.origin === 'http://localhost:3000' ? '.md' : '';
+  
 
   useEffect(() => {
-    fetch("/posts/about-me.md")
+    fetch(`${baseUrl}/posts/about-me${md}`)
       .then((response) => response.text())
       .then((markdown) => {
         setAboutContent(DOMPurify.sanitize(markdown));

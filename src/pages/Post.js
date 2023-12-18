@@ -11,9 +11,11 @@ function Post() {
   const theme = useTheme();
   const [post, setPost] = useState({ metadata: {}, content: "" });
   const { slug } = useParams();
+  const baseUrl = window.location.origin === 'http://localhost:3000' ? 'http://localhost:3000' : 'https://parsakargari.github.io'; 
+  const md = window.location.origin === 'http://localhost:3000' ? '.md' : '';
 
   useEffect(() => {
-    fetch(`/posts/${slug}.md`)
+    fetch(`${baseUrl}/posts/${slug + md}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

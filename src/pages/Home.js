@@ -14,14 +14,19 @@ function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const theme = useTheme();
+  const baseUrl =
+    window.location.origin === "http://localhost:3000"
+      ? "http://localhost:3000"
+      : "https://parsakargari.github.io";
+  const md = window.location.origin === "http://localhost:3000" ? ".md" : "";
 
   useEffect(() => {
-    fetch("/posts/index.json")
+    fetch(`${baseUrl}/posts/index.json`)
       .then((response) => response.json())
       .then((filenames) => {
         return Promise.all(
           filenames.map((filename) => {
-            return fetch(`/posts/${filename}`)
+            return fetch(`/posts/${filename + md}`)
               .then((response) => response.text())
               .then((markdown) => {
                 const { data, content } = grayMatter(markdown);
@@ -54,8 +59,10 @@ function Home() {
 
   const filteredPosts = posts.filter(
     (post) =>
-      post.title.toLowerCase().includes(searchTerm) ||
-      post.description.toLowerCase().includes(searchTerm)
+      (post.title &&
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (post.description &&
+        post.description.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   // Render a message if no posts are available
@@ -66,7 +73,9 @@ function Home() {
   return (
     <div className={styles.home}>
       {/* Search Bar */}
-      <Box sx={{ display: "flex", justifyContent: "center", marginBottom: "50px" }}>
+      <Box
+        sx={{ display: "flex", justifyContent: "center", marginBottom: "50px" }}
+      >
         <TextField
           label="Search Posts"
           variant="outlined"
