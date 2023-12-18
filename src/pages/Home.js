@@ -29,6 +29,7 @@ function Home() {
             return fetch(`/posts/${filename + md}`)
               .then((response) => response.text())
               .then((markdown) => {
+                console.log(markdown);
                 const { data, content } = grayMatter(markdown);
                 const readTime = calculateReadTime(content);
                 return { ...data, content, readTime };
