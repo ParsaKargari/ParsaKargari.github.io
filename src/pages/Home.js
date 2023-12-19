@@ -18,7 +18,6 @@ function Home() {
     window.location.origin === "http://localhost:3000"
       ? "http://localhost:3000"
       : "https://parsakargari.github.io";
-  const md = window.location.origin === "http://localhost:3000" ? ".md" : ".md";
 
   useEffect(() => {
     fetch(`${baseUrl}/posts/index.json`)
@@ -26,7 +25,7 @@ function Home() {
       .then((filenames) => {
         return Promise.all(
           filenames.map((filename) => {
-            return fetch(`/posts/${filename + md}`)
+            return fetch(`/posts/${filename}.md`)
               .then((response) => response.text())
               .then((markdown) => {
                 const { data, content } = grayMatter(markdown);
@@ -48,7 +47,7 @@ function Home() {
   }, []);
 
   function calculateReadTime(text) {
-    const wordsPerMinute = 200;
+    const wordsPerMinute = 200; // Average case.
     const words = text.split(/\s+/).length;
     const minutes = words / wordsPerMinute;
     return Math.ceil(minutes);
