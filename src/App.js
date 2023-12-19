@@ -1,5 +1,5 @@
 // App.js
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,7 +11,16 @@ import Footer from "./components/Footer";
 import Container from "@mui/material/Container";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    // Check for dark mode preference in localStorage
+    const savedMode = localStorage.getItem("darkMode");
+    return savedMode === "true" ? true : false;
+  });
+
+  useEffect(() => {
+    // Update localStorage when darkMode changes
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
 
   const theme = useMemo(
     () =>
@@ -22,37 +31,37 @@ function App() {
             ? {
                 // Dark mode palette
                 background: {
-                  default: "#292a2d", 
-                  paper: "#111111", 
+                  default: "#292a2d",
+                  paper: "#111111",
                 },
                 primary: {
-                  main: "#90caf9", 
+                  main: "#90caf9",
                 },
                 secondary: {
-                  main: "#f48fb1", 
+                  main: "#f48fb1",
                 },
                 text: {
-                  primary: "#a9a9b3", 
-                  secondary: "#aaaaaa", 
+                  primary: "#a9a9b3",
+                  secondary: "#aaaaaa",
                 },
                 tags: {
-                  background: "#3B3D42", 
+                  background: "#3B3D42",
                 },
               }
             : {
                 // Light mode palette
                 primary: {
-                  main: "#1976d2", 
+                  main: "#1976d2",
                 },
                 secondary: {
-                  main: "#dc004e", 
+                  main: "#dc004e",
                 },
                 text: {
-                  primary: "#222222", 
-                  secondary: "#555555", 
+                  primary: "#222222",
+                  secondary: "#555555",
                 },
                 tags: {
-                  background: "#eee", 
+                  background: "#eee",
                 },
               }),
         },
@@ -69,12 +78,12 @@ function App() {
       <CssBaseline />
       <Router>
         <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-        <Container maxWidth="md" sx={{paddingTop: "175px"}}>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/post/:slug" element={<Post />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+        <Container maxWidth="md" sx={{ paddingTop: "175px" }}>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/post/:slug" element={<Post />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
         </Container>
         <Footer />
       </Router>
