@@ -130,14 +130,15 @@ Branching is like keeping a personal diary in a multiverse. You can make changes
 12. Switch back to the main branch with `git checkout main`.
 13. Merge the new branch into the main branch with `git merge new-idea`.
 
-A simple branching visual: 
+A simple branching visual:
 
-<img src="https://global.discourse-cdn.com/business4/uploads/inductiveautomation/original/3X/0/d/0d19837bbaf82a71ab35b2a62c5f8776af8e900a.png" alt="Branching Visual" width="600" >
+<img src="https://global.discourse-cdn.com/business4/uploads/inductiveautomation/original/3X/0/d/0d19837bbaf82a71ab35b2a62c5f8776af8e900a.png" alt="Branching Visual" style='margin: auto; max-width: 100%; height: auto;' >
 
-*Image Source: [Inductive Automation](https://forum.inductiveautomation.com/t/git-branching-strategy/31386)*
+_Image Source: [Inductive Automation](https://forum.inductiveautomation.com/t/git-branching-strategy/31386)_
 
 ### Common Workflow Pattern
-*Combining everything we've learned so far, here's a common workflow pattern:*
+
+_Combining everything we've learned so far, here's a common workflow pattern:_
 
 ```bash
 # Let's say we're working on a group project
@@ -172,7 +173,7 @@ git commit -m "message" # Saving the changes with a message that describes the c
 
 git push # Sending the changes to GitHub for everyone to see
 
-# Note: We're still on the new-idea branch. 
+# Note: We're still on the new-idea branch.
 # Therefor, the changes we made are only visible on the new-idea branch on GitHub not the main branch.
 
 # We're happy with the new idea and want to merge it into the main branch
@@ -212,7 +213,6 @@ Great stories are full of mistakes. Here's how to fix them:
 9. Seal the chapter into the diary's memory with `git commit -m "New idea"`.
 10. Use `git log` to see the history of your diary.
 11. Revert to the first commit with `git reset --hard <commit>`. Note: Replace `<commit>` with the commit ID you want to revert to. You can also use `git reset --hard` to discard all the changes you've made since the last commit.
-
 
 ### Best Practices
 
