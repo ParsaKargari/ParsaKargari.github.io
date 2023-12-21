@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Container from "@mui/material/Container";
 
+
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
     // Check for dark mode preference in localStorage
